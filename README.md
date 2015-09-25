@@ -20,4 +20,4 @@ url "https://www.apache.org/dyn/closer.cgi?path=subversion/subversion-1.9.2.tar.
 brew upgrade subversion
 ```
 
-See "paulhammant.com/2015/09/24/subversion-merge-limitations/":http://paulhammant.com/2015/09/24/subversion-merge-limitations/ for more details.
+See "paulhammant.com/2015/09/25/subversion-merge-limitations/":http://paulhammant.com/2015/09/25/subversion-merge-limitations/ for more details.
