@@ -46,7 +46,7 @@ more two/testfile.txt
 echo "Attempt redundant merge of branch two into branch one (individual commits are merged already, and files at HEAD revision are idential):"
 # --record-only
 /usr/local/bin/svn merge svn://127.0.0.1/two one
-/usr/local/bin/svn commit -m "remainder (whatever that means) merged into two"
+/usr/local/bin/svn commit -m "remainder (whatever that means) merged into one"
 svn up
 echo "Mergeinfo, after merge of all the remaining commits (whatever that means)"
 svn propget svn:mergeinfo one
