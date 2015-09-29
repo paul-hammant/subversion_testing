@@ -1,47 +1,47 @@
 #!/bin/sh
 
 last_rev () { 
-git log | grep "^commit " | head -n1 | cut -d' ' -f2
+hg log | grep "^changeset: " | head -n1 | cut -d':' -f3
 } 
 
 set -e
 
 mkdir data
 cd data
-git init
+hg init
 echo "a\n\nb\n\nc\n\nd\n\ne\n" > testfile.txt
-git add testfile.txt
-git commit -m "branch_one_creation"
-git branch -m  one
-git branch two
-git checkout two
-# git commit -m "branch_two_creation" <-- unecessary in Git
-git checkout one
+hg add testfile.txt
+hg commit -m "branch_one_creation"
+orig_commit=$(last_rev) 
+hg branch one
 perl -pi -e 's/^a/a aa/' testfile.txt
-git commit -am "line a changed"
+hg commit -m "line a changed"
 a_changed_in_br_one=$(last_rev) 
 perl -pi -e 's/^b/b bbb/' testfile.txt
-git commit -am "line b changed"
+hg commit -m "line b changed"
 b_changed_in_br_one=$(last_rev) 
 perl -pi -e 's/^c/c cccc/' testfile.txt
-git commit -am "line c changed"
+hg commit -m "line c changed"
 c_changed_in_br_one=$(last_rev) 
 perl -pi -e 's/^d/d ddddd/' testfile.txt
-git commit -am "line d changed"
+hg commit -m "line d changed"
 d_changed_in_br_one=$(last_rev) 
 perl -pi -e 's/^e/e eeeeee/' testfile.txt
-git commit -am "line e changed"
+hg commit -m "line e changed"
 e_changed_in_br_one=$(last_rev)
-git checkout two
-git cherry-pick --no-commit $a_changed_in_br_one
-git commit -am "line a merged into two"
-git cherry-pick --no-commit $e_changed_in_br_one 
-git commit -am "line e merged into two"
-git cherry-pick --no-commit $c_changed_in_br_one  
-git commit -am "line c merged into two"
-git cherry-pick --no-commit $d_changed_in_br_one  
-git commit -am "line d merged into two"
-git cherry-pick --no-commit $b_changed_in_br_one  
-git commit -am "line b merged into two"
-git merge one --no-commit
-git commit -m "remainder (whatever that means) merged into two"
+# Create a bramch without all those changes
+hg update -r $orig_commit
+hg branch two
+
+# would love to have custom commit message for cherry-picks 
+# but cannot without interactive editor
+hg graft -r $a_changed_in_br_one
+hg graft -r $e_changed_in_br_one 
+hg graft -r $c_changed_in_br_one  
+hg graft -r $d_changed_in_br_one  
+hg graft -r $b_changed_in_br_one  
+
+# can have custom comit message for merge (inconsistent 
+# with chery picks above)
+hg merge one
+hg commit -m "remainder (whatever that means) merged into two"
