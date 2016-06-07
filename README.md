@@ -4,9 +4,7 @@
 brew install subversion
 ```
 
-# The test of Subversion
-
-To see the Subvsersion merge-tracking bug:
+# To see the Subvsersion merge-tracking bug
 
 ```
 ./reset.sh
@@ -17,3 +15,15 @@ To see the Subvsersion merge-tracking bug:
 It'll barf at the end with a merge conflict. Last subversion tested 1.9.4
 
 For more info, see the accompanying bog entry: [paulhammant.com/2015/09/25/subversion-merge-limitations/](http://paulhammant.com/2015/09/25/subversion-merge-limitations/)
+
+# Mercurial doesn't have the same bug
+
+See the [hg_equivalent](https://github.com/paul-hammant/subversion_testing/tree/hg_equivalent) branch in this repo
+
+# Git doesn't have the same bug
+
+See the [git_equivalent](https://github.com/paul-hammant/subversion_testing/tree/git_equivalent) branch in this repo
+
+# Perforce doesn't have the same bug
+
+See the [p4_equivalent](https://github.com/paul-hammant/subversion_testing/tree/p4_equivalent) branch in this repo
