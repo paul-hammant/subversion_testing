@@ -12,7 +12,7 @@ brew install subversion
 ./test_of_out_order_merges_back_the_original_branch.sh
 ```
 
-It'll barf at the end with a merge conflict. Last subversion tested 1.9.6 (Jul 7, 2017)
+It will barf at the end with a merge conflict. Last subversion tested 1.9.7 (Aug 10 2017)
 
 For more info, see the accompanying bog entry: [paulhammant.com/2015/09/25/subversion-merge-limitations/](http://paulhammant.com/2015/09/25/subversion-merge-limitations/)
 
